@@ -1,0 +1,230 @@
+:root {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --input-bg: #222222;
+    --input-border: #333333;
+    --icon-color: #cccccc;
+    --icon-hover: #ffffff;
+    --btn-bg: #ffffff;
+    --btn-color: #000000;
+    
+    --orb-color-1: #0088ff;
+    --orb-color-2: #00eeff;
+    --orb-color-3: #ffffff;
+    --orb-color-4: #0044ff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.app-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 1rem;
+    position: relative;
+}
+
+/* Central Orb Container */
+.orb-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.status-text {
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+/* Orb Styling */
+.orb {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.orb .core {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--orb-color-3) 0%, var(--orb-color-2) 30%, var(--orb-color-1) 70%, var(--orb-color-4) 100%);
+    filter: blur(8px);
+    z-index: 2;
+    transition: all 0.5s ease;
+}
+
+.orb .glow {
+    position: absolute;
+    width: 140%;
+    height: 140%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 136, 255, 0.4) 0%, rgba(0, 0, 0, 0) 70%);
+    z-index: 1;
+    filter: blur(20px);
+    transition: all 0.5s ease;
+}
+
+/* Orb States */
+
+/* 1. Idle State */
+.orb.state-idle .core {
+    animation: rotate 10s linear infinite, breathe 4s ease-in-out infinite alternate;
+}
+
+/* 2. Listening State */
+.orb.state-listening .core {
+    transform: scale(1.1);
+    background: radial-gradient(circle at 50% 50%, var(--orb-color-3) 0%, #00aaff 40%, #0055ff 80%, var(--orb-color-4) 100%);
+    animation: rotate 5s linear infinite, pulse 1.5s ease-in-out infinite alternate;
+    filter: blur(12px);
+}
+.orb.state-listening .glow {
+    width: 160%;
+    height: 160%;
+    background: radial-gradient(circle, rgba(0, 170, 255, 0.6) 0%, rgba(0, 0, 0, 0) 70%);
+}
+
+/* 3. Thinking State */
+.orb.state-thinking .core {
+    transform: scale(0.9);
+    background: radial-gradient(circle at 70% 30%, #ffffff 0%, #55aaff 40%, #002288 80%);
+    animation: spin-fast 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    filter: blur(6px);
+}
+
+/* 4. Speaking State */
+.orb.state-speaking .core {
+    transform: scale(1.2);
+    background: radial-gradient(circle at 50% 50%, var(--orb-color-3) 0%, var(--orb-color-2) 30%, var(--orb-color-1) 70%, var(--orb-color-4) 100%);
+    animation: rotate 6s linear infinite, speak-pulse 0.5s ease-in-out infinite alternate;
+    filter: blur(10px);
+}
+.orb.state-speaking .glow {
+    animation: speak-glow 0.5s ease-in-out infinite alternate;
+}
+
+/* Animations */
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes spin-fast {
+    0% { transform: rotate(0deg) scale(0.9); }
+    50% { transform: rotate(180deg) scale(0.8); }
+    100% { transform: rotate(360deg) scale(0.9); }
+}
+
+@keyframes breathe {
+    0% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1.05) rotate(45deg); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1.05); }
+    100% { transform: scale(1.15); }
+}
+
+@keyframes speak-pulse {
+    0% { transform: scale(1.1); }
+    100% { transform: scale(1.3); }
+}
+
+@keyframes speak-glow {
+    0% { opacity: 0.6; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Bottom Input Bar */
+.input-bar-container {
+    width: 100%;
+    max-width: 600px;
+    background-color: var(--input-bg);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    margin-bottom: 20px;
+    border: 1px solid var(--input-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: var(--icon-color);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+    color: var(--icon-hover);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.input-wrapper {
+    flex: 1;
+    margin: 0 12px;
+}
+
+.text-input {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+}
+
+.text-input::placeholder {
+    color: #666666;
+}
+
+.close-btn {
+    background-color: var(--btn-bg);
+    color: var(--btn-color);
+    margin-left: 8px;
+}
+
+.close-btn:hover {
+    background-color: #e0e0e0;
+    color: var(--btn-color);
+}

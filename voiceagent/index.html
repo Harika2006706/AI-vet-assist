@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Agent</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- SVG icons from Phosphor Icons or similar simple SVG paths -->
+</head>
+<body>
+    <div class="app-container">
+        <!-- Central Animated Orb -->
+        <div class="orb-container">
+            <div id="voice-orb" class="orb state-idle">
+                <div class="glow"></div>
+                <div class="core"></div>
+                <div class="ring ring-1"></div>
+                <div class="ring ring-2"></div>
+            </div>
+            <div id="status-text" class="status-text">Idle</div>
+        </div>
+
+        <!-- Bottom Input Bar -->
+        <div class="input-bar-container">
+            <button class="icon-btn" aria-label="Add attachment">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </button>
+            <div class="input-wrapper">
+                <input type="text" placeholder="Type a message..." class="text-input" id="message-input">
+            </div>
+            <button class="icon-btn" aria-label="Voice input" id="mic-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg>
+            </button>
+            <button class="icon-btn close-btn" aria-label="Close" id="close-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
